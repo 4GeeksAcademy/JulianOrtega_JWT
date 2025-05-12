@@ -73,7 +73,7 @@ def handle_login():
     if not user or not check_password_hash(user.password, data.get('password')):
         return jsonify({"message": "Email o contraseña inválidos"}), 401
     
-    access_token = create_access_token(identity=user.id)
+    access_token = create_access_token(identity=str(user.id))
     return jsonify({ 
         "message": "Login exitoso",
         "token": access_token,
